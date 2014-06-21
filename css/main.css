@@ -25,6 +25,21 @@ html {
     color: #fff;
 }
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stars-container
+{
+  background-color: black;
+  text-align: center;  
+}
+
+img.star {
+  width: 200px;
+}
+
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
