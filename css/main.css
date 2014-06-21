@@ -26,18 +26,108 @@ html {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 500px;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 .stars-container
 {
   background-color: black;
-  text-align: center;  
+  text-align: center;
 }
 
 img.star {
   width: 200px;
+}
+
+.main-view {
+  width: 500px;
+  height: 500px;
+  position: relative;
+}
+
+.screen {
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: 500px;
+  background-color: black;
+}
+/* top */
+.top-screen {
+  background-image: url(../img/top.jpg);
+}
+
+.top-screen .start-button {
+  width: 160px;
+  margin-left: 170px;
+  margin-top: 450px;
+}
+
+/* top */
+.game-top {
+  background-image: url(../img/game-top.jpg);
+  position: relative;
+}
+
+.game-top .star {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+}
+
+/* star */
+.star-detail .description {
+  min-height: 200px;
+}
+
+/* result */
+.result {
+  padding: 15px;
+}
+
+.result .navigation-to-plus-you {
+  color: #111;
+  background-color: #ccc;
+  padding: 10px;
+  margin: 20px;
+}
+
+.result .top-button {
+  display: block;
+  margin: 20px auto;
+  width: 160px;
+}
+
+/* page transitions */
+/* crossFade */
+.fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+}
+.fade.ng-enter,
+.fade.ng-leave {
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.fade.ng-enter {
+    opacity: 0;
+}
+.fade.ng-enter-active {
+    opacity: 1;
+}
+.fade.ng-leave {
+    opacity: 1;
+}
+.fade.ng-leave-active {
+    opacity: 0;
 }
 
 /*
