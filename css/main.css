@@ -147,6 +147,25 @@ img.star {
 .sell input {
   width: 3em;
 }
+
+/* result */
+.result {
+  padding: 10px;
+  background-color: black;
+}
+
+.result .result-message {
+  min-height: 200px;
+}
+
+.result navigation-to-plus-you {
+  
+}
+
+.result .additional-description{
+  font-size: 0.75em;
+}
+
 /* page transitions */
 /* crossFade */
 .fade {

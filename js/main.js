@@ -13,6 +13,12 @@ app.config(function($routeProvider, $locationProvider) {
   }).when('/sell', {
     templateUrl: '/views/sell.html',
     controller: sellCtrl
+  }).when('/gameclear', {
+    templateUrl: '/views/game-result.html',
+    controller: gameClearCtrl
+  }).when('/gameover', {
+    templateUrl: '/views/game-result.html',
+    controller: gameoverCtrl
   }).otherwise({
      templateUrl: '/views/top.html'
   });
@@ -142,4 +148,12 @@ function sellCtrl($route, $routeParams, $location, $scope) {
     }
     $scope.doTurn();
   };
+}
+
+function gameClearCtrl($route, $routeParams, $location, $scope) {
+  $scope.resultMessage = "おめでとうございます！あなたは見事あろーず星を救うことができました";
+}
+
+function gameoverCtrl($route, $routeParams, $location, $scope) {
+  $scope.resultMessage = "(´・ω・｀)";
 }
