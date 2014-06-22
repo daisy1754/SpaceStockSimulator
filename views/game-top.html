@@ -1,6 +1,10 @@
 <div class="screen game-top">
-  <div class="stars" ng-repeat="star in stars">
-    <a href="/star/{{star.id}}" class="star" style="position: absolute; top:{{starLocations[$index    ].top}}px; left:{{starLocations[$index].left}}px">{{star.name}}</a>
+  <div class="stars">
+    <div class="star" ng-repeat="star in stars" style="position: absolute; top:{{starLocations[$index].top}}px; left:{{starLocations[$index].left}}px">
+      <a href="/star/{{star.id}}">
+        <img src="/img/{{star.img}}"><br>
+        {{star.name}}</a>
+    </div>
   </div>
   <span class="year">銀河歴 {{year}}億年
     <span ng-if="year_limit - year < 10">(A星消滅まであと{{year_limit - year}})</span>

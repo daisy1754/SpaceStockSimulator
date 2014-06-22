@@ -33,9 +33,9 @@ app.value('$anchorScroll', angular.noop);
 function SSSCtrl($location, $scope) {
   $scope.init = function() {
     $scope.stars = {
-      1: {id: 1, name: "HogeStar", img: "img/star.jpg", description: "やばい"},
-      2: {id: 2, name: "FugaStar", img: "img/star.jpg", description: "つよい"},
-      3: {id: 3, name: "PeroStar", img: "img/star.jpg", description: "すごい"},
+      1: {id: 1, name: "N645", img: "star1.png", description: "期待の超新星"},
+      2: {id: 2, name: "S543", img: "star2.png", description: "惑星随一の安定感を誇る"},
+      3: {id: 3, name: "P646", img: "star3.png", description: "すごい"},
     }
     $scope.price = {
       1: 0.03,
