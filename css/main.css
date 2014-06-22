@@ -54,7 +54,19 @@ img.star {
   height: 500px;
   background-color: black;
 }
+
 /* top */
+.index .arrows {
+  background-color: black;
+  padding: 5px;
+  margin-top: 30px;
+  font-size: 0.9em;
+}
+
+.index .additional-description {
+  font-size: 0.75em;
+}
+
 .top-screen {
   background-image: url(../img/top.jpg);
 }
