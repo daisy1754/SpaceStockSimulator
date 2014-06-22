@@ -50,7 +50,7 @@ function SSSCtrl($location, $scope) {
     $scope.dollar = 0;
     $scope.money = 100;
     $scope.money_goal = 1000;
-    $scope.stocks = {1: 5, 2: 10, 3: 0};
+    $scope.stocks = {1: 0, 2: 0, 3: 0};
     for (var i = 0; i < 10; i++) {
       $scope.updateStockPrice();
     }
