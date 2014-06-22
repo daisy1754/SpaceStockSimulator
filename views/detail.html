@@ -1,7 +1,10 @@
 <div class="screen star-detail">
   <h3>{{star.name}}</h3>
   <img src="{{star.image}}">
-  <div class="description">{{star.description}}</div>
+  <div class="description">
+    <p>{{star.description}}</p>
+    <div google-chart chart="resentTrendChart"></div>
+  </div>
   <div class="action-buttons">
     <button class="pure-button" ng-click="goBack()">戻る</button>
     <a class="pure-button pure-button-primary buy-button" href="" ng-click="buyStock(star.id, 500)">

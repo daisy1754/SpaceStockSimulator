@@ -1,5 +1,5 @@
 
-var app = angular.module('SSSApp', ['ngRoute', 'ngAnimate']);
+var app = angular.module('SSSApp', ['ngRoute', 'ngAnimate', 'googlechart']);
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {
@@ -51,6 +51,7 @@ function SSSCtrl($location, $scope) {
     for (var i = 0; i < 10; i++) {
       $scope.updateStockPrice();
     }
+    console.log($scope.priceHistory[1]);
   };
   $scope.goBack = function() {
     window.history.back();
@@ -104,6 +105,24 @@ function gameTopCtrl($route, $routeParams, $location, $scope) {
 function detailCtrl($route, $routeParams, $location, $scope) {
   $scope.star = $scope.stars[$routeParams.starId];
   $scope.star.id = $routeParams.starId;
+
+  $scope.resentTrendChart = {
+    options: {title: "最近の値動き"},
+    type: "LineChart"
+  };
+
+  var data = {"cols": [
+      {id: "y", label: "Year", type: "number"},
+      {id: "p", label: "Price", type: "number"}
+    ],
+    "rows": []};
+  var year = $scope.year;
+  var priceHistory = $scope.priceHistory[$scope.star.id];
+  for (var i = 0; i < priceHistory.length; i++) {
+    var history = priceHistory[i];
+    data["rows"].push({c: [{v: $scope.year - priceHistory.length - i},{v: history}]});
+  }
+  $scope.resentTrendChart.data = data;
 
   $scope.buyStock = function(starId, num) {
     $scope.stocks[starId] += num;
