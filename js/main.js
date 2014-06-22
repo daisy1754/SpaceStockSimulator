@@ -13,9 +13,6 @@ app.config(function($routeProvider, $locationProvider) {
   }).when('/sell', {
     templateUrl: '/views/sell.html',
     controller: sellCtrl
-  }).when('/result/:starId', {
-    templateUrl: '/views/result.html',
-    controller: resultCtrl
   }).otherwise({
      templateUrl: '/views/top.html'
   });
@@ -145,9 +142,4 @@ function sellCtrl($route, $routeParams, $location, $scope) {
     }
     $scope.doTurn();
   };
-}
-
-function resultCtrl($route, $routeParams, $location, $scope) {
-  $scope.star = $scope.stars[$routeParams.starId];
-  $scope.star.id = $routeParams.starId;
 }
