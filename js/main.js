@@ -3,18 +3,21 @@ var app = angular.module('SSSApp', ['ngRoute', 'ngAnimate']);
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {
-     templateUrl: '/SpaceStockSimulator/views/top.html'
+     templateUrl: '/views/top.html'
   }).when('/game', {
-    templateUrl: '/SpaceStockSimulator/views/game-top.html',
+    templateUrl: '/views/game-top.html',
     controller: gameTopCtrl
   }).when('/star/:starId', {
-    templateUrl: '/SpaceStockSimulator/views/detail.html',
+    templateUrl: '/views/detail.html',
     controller: detailCtrl
+  }).when('/sell', {
+    templateUrl: '/views/sell.html',
+    controller: sellCtrl
   }).when('/result/:starId', {
-    templateUrl: '/SpaceStockSimulator/views/result.html',
+    templateUrl: '/views/result.html',
     controller: resultCtrl
   }).otherwise({
-     templateUrl: '/SpaceStockSimulator/views/top.html'
+     templateUrl: '/views/top.html'
   });
 });
 
@@ -25,30 +28,107 @@ app.config(function($locationProvider) {
 app.value('$anchorScroll', angular.noop);
 
 function SSSCtrl($location, $scope) {
-  $scope.starInformation = {
-    1: {name: "HogeStar", img: "img/star.jpg", description: "やばい"},
-    2: {name: "FugaStar", img: "img/star.jpg", description: "つよい"},
-    3: {name: "PeroStar", img: "img/star.jpg", description: "すごい"},
-  }
+  $scope.init = function() {
+    $scope.stars = {
+      1: {id: 1, name: "HogeStar", img: "img/star.jpg", description: "やばい"},
+      2: {id: 2, name: "FugaStar", img: "img/star.jpg", description: "つよい"},
+      3: {id: 3, name: "PeroStar", img: "img/star.jpg", description: "すごい"},
+    }
+    $scope.price = {
+      1: 0.03,
+      2: 0.02,
+      3: 0.03
+    }
+    $scope.priceHistory = {
+      1: [], 2: [], 3: []
+    };
+    $scope.year_limit = 7000;
+    $scope.year = 6950;
+    $scope.dollar = 0;
+    $scope.money = 100;
+    $scope.money_goal = 1000;
+    $scope.stocks = {1: 5, 2: 10, 3: 0};
+    for (var i = 0; i < 10; i++) {
+      $scope.updateStockPrice();
+    }
+  };
   $scope.goBack = function() {
     window.history.back();
   };
+  $scope.estimatedStockPrice = function() {
+    var sum = 0.0;
+    for (var starId in $scope.stars) {
+      sum += $scope.stocks[starId] * $scope.price[starId];
+    }
+    return sum;
+  };
+  $scope.doTurn = function() {
+    $scope.year++;
+
+    $scope.updateStockPrice();
+
+    if ($scope.money > $scope.money_goal) {
+      $location.path("/gameclear");
+    } else if ($scope.year == $scope.year_limit){
+      $location.path("/gameover");
+    }
+    $location.path("/game");
+  };
+  $scope.updateMoney = function(money) {
+    $scope.money = money;
+  };
+  $scope.updateStockPrice = function() {
+    for (var starId in $scope.price) {
+      // Randomly change stock price
+      var currentPrice = $scope.price[starId];
+      $scope.priceHistory[starId].push(currentPrice);
+      if ($scope.priceHistory[starId].length > 10) {
+        $scope.priceHistory[starId].shift(currentPrice);
+      }
+      currentPrice += (Math.random() - 0.5) / 1000;
+      $scope.price[starId] = currentPrice;
+    }
+  };
+
+  $scope.init();
 }
 
 function gameTopCtrl($route, $routeParams, $location, $scope) {
-  $scope.stars = [
-    {id: 1, name: "Star1", top: 120, left: 50},
-    {id: 2, name: "Star2", top: 100, left: 300},
-    {id: 3, name: "Star3", top: 50, left: 200},
+  $scope.starLocations = [
+    {top: 120, left: 50},
+    {top: 100, left: 300},
+    {top: 50, left: 200},
   ];
 }
 
 function detailCtrl($route, $routeParams, $location, $scope) {
-  $scope.star = $scope.starInformation[$routeParams.starId];
+  $scope.star = $scope.stars[$routeParams.starId];
   $scope.star.id = $routeParams.starId;
+
+  $scope.buyStock = function(starId, num) {
+    $scope.stocks[starId] += num;
+    $scope.year++;
+    $scope.doTurn();
+  }
+}
+
+function sellCtrl($route, $routeParams, $location, $scope) {
+  $scope.num_to_sell = [];
+  for (var starId in $scope.stocks) {
+    $scope.num_to_sell[starId] = 0;
+  }
+
+  $scope.sell = function sell() {
+    for (var starId in $scope.num_to_sell) {
+      // TODO validation
+      $scope.stocks[starId] -= $scope.num_to_sell[starId];
+      $scope.updateMoney($scope.money - $scope.price[starId] * $scope.num_to_sell[starId]);
+    }
+    $scope.doTurn();
+  };
 }
 
 function resultCtrl($route, $routeParams, $location, $scope) {
-  $scope.star = $scope.starInformation[$routeParams.starId];
+  $scope.star = $scope.stars[$routeParams.starId];
   $scope.star.id = $routeParams.starId;
 }

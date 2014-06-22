@@ -4,6 +4,8 @@
   <div class="description">{{star.description}}</div>
   <div class="action-buttons">
     <button class="pure-button" ng-click="goBack()">戻る</button>
-    <a class="pure-button pure-button-primary buy-button" href="/SpaceStockSimulator/result/{{star.id}}">この星に5000億銀河ドル投資する</a>
+    <a class="pure-button pure-button-primary buy-button" href="" ng-click="buyStock(star.id, 500)">
+      この星の株を500株分購入する
+    </a>
   </div>
 </div>

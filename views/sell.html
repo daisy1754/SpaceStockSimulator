@@ -1,0 +1,19 @@
+<div class="screen sell">
+  <h4>株を売る</h4>
+  <table class="stocks">
+    <tr class="stock" ng-repeat="(id, num_of_stock) in stocks">
+      <td class="stock-name">{{stars[id].name}} ({{num_of_stock}})</td>
+      <td ng-if="num_of_stock > 0">
+        <input type="text" ng-model="num_to_sell[id]">株売る
+        <span ng-if="num_to_sell[id] > num_of_stock">持っている株数以上は売ることができません</span>
+        <span ng-if="num_to_sell[id] < 0">不正な値です</span>
+      </td>
+      <td ng-if="num_of_stock == 0">所持していません</td>
+    </tr>
+  </table>
+  <div class="money">所持金: {{money}}億銀河ドル</div>
+  <div class="action-buttons">
+    <a class="pure-button" ng-click="goBack()">戻る</a>
+    <a class="pure-button pure-button-primary sell-button" ng-click="sell()">売る</a>
+  </div>
+</div>

@@ -77,6 +77,30 @@ img.star {
   height: 50px;
 }
 
+.game-top .year {
+  background-color: #111;
+  padding: 5px 10px;
+  width: auto;
+}
+
+.game-top .information-bar {
+  position: absolute;
+  top: 350px;
+  padding: 5px 10px;
+  background-color: #222;
+}
+
+.game-top .stocks {
+  list-style: none;
+  padding-left: 0;
+  padding-top: 5px;
+  margin: 0;
+}
+
+.game-top .stocks li {
+  float: left;
+  padding-right: 10px;
+}
 /* star */
 .star-detail .description {
   min-height: 200px;
@@ -100,6 +124,32 @@ img.star {
   width: 160px;
 }
 
+/* sell */
+.sell {
+  padding 10px;
+}
+
+.sell .stocks {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.sell .stock {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sell .stock-name {
+  min-width: 8em;
+}
+
+.sell .action-buttons {
+  margin-top: 20px;
+}
+
+.sell input {
+  width: 3em;
+}
 /* page transitions */
 /* crossFade */
 .fade {

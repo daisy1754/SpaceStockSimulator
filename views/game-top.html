@@ -1,5 +1,18 @@
 <div class="screen game-top">
   <div class="stars" ng-repeat="star in stars">
-    <a href="/SpaceStockSimulator/star/{{star.id}}" class="star" style="position: absolute; top:{{star.top}}px; left:{{star.left}}px">{{star.name}}</a>
+    <a href="/star/{{star.id}}" class="star" style="position: absolute; top:{{starLocations[$index    ].top}}px; left:{{starLocations[$index].left}}px">{{star.name}}</a>
   </div>
+  <span class="year">銀河歴 {{year}}億年
+    <span ng-if="year_limit - year < 10">(A星消滅まであと{{year_limit - year}})</span>
+  </span>
+  <div class="information-bar">
+    <span class="money">所持金: {{money}}億銀河ドル</span>
+    <div>
+      <ul class="stocks">
+        <li class="stock" ng-repeat="(id, num_of_stock) in stocks">{{stars[id].name}}: {{num_of_stock}}株</li>
+      </ul><br>
+      持ち株価格合計: {{estimatedStockPrice()}}億銀河ドル
+    </div>
+  </div>
+  <a class="pure-button pure-button-primary sell-button" href="/sell">株を売る</a>
 </div>
