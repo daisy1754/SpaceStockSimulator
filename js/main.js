@@ -110,20 +110,23 @@ function detailCtrl($route, $routeParams, $location, $scope) {
   $scope.star.id = $routeParams.starId;
 
   $scope.resentTrendChart = {
-    options: {title: "最近の値動き"},
+    options: {
+        title: "最近の株価推移",
+        vAxis: {title: "株価 (億宇宙ドル)"},
+        hAxis: {title: "宇宙暦 (億年)"}},
     type: "LineChart"
   };
 
   var data = {"cols": [
-      {id: "y", label: "Year", type: "number"},
-      {id: "p", label: "Price", type: "number"}
+      {id: "y", label: "年", type: "number"},
+      {id: "p", label: "株価", type: "number"}
     ],
     "rows": []};
   var year = $scope.year;
   var priceHistory = $scope.priceHistory[$scope.star.id];
   for (var i = 0; i < priceHistory.length; i++) {
     var history = priceHistory[i];
-    data["rows"].push({c: [{v: $scope.year - priceHistory.length - i},{v: history}]});
+    data["rows"].push({c: [{v: year - priceHistory.length + i},{v: history}]});
   }
   $scope.resentTrendChart.data = data;
 
