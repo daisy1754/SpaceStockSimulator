@@ -38,9 +38,9 @@ function SSSCtrl($location, $scope) {
       3: {id: 3, name: "P646", img: "star3.png", description: "すごい"},
     }
     $scope.price = {
-      1: 0.03,
-      2: 0.02,
-      3: 0.03
+      1: 0.06 * Math.random() + 0.01,
+      2: 0.04 * Math.random() + 0.001,
+      3: 0.06 * Math.random()
     }
     $scope.priceHistory = {
       1: [], 2: [], 3: []
@@ -54,7 +54,6 @@ function SSSCtrl($location, $scope) {
     for (var i = 0; i < 10; i++) {
       $scope.updateStockPrice();
     }
-    console.log($scope.priceHistory[1]);
   };
   $scope.goBack = function() {
     window.history.back();
@@ -89,10 +88,42 @@ function SSSCtrl($location, $scope) {
       if ($scope.priceHistory[starId].length > 10) {
         $scope.priceHistory[starId].shift(currentPrice);
       }
-      currentPrice += (Math.random() - 0.5) / 1000;
-      $scope.price[starId] = currentPrice;
+      $scope.price[starId] = $scope.calcNextPrice(starId, currentPrice, $scope.priceHistory[starId]);
     }
   };
+  $scope.calcNextPrice = function(starId, currentPrice, history) {
+    var price;
+    if (starId == 2) {
+      price = $scope.randomUpdate(currentPrice, 0.2);
+    } else {
+      if (history.length < 5) {
+        price = $scope.randomUpdate(currentPrice, 0.3);
+      } else {
+        var trend = $scope.calcGradient(history.slice(history.length -5, history.length));
+        price = currentPrice + trend + (Math.random() - 0.5) * currentPrice / 10;
+        var rand = Math.random();
+        if (rand > 0.07) {
+          price *= 1.17;
+        } else if (rand < 0.07) {
+          price *= 0.83;
+        }
+      }
+    }
+    return price > 0 ? price : 0.000001;
+  };
+  $scope.randomUpdate = function(current, ratio) {
+    return current * (1.0 + ratio * (Math.random() - 0.5));
+  }
+  $scope.calcGradient = function(values) {
+    var xSigma = 0, ySigma = 0, xySigma = 0, xDoubleSigma = 0;
+    for (var i = 0; i < values.length; i++) {
+      xSigma += i;
+      ySigma += values[i];
+      xySigma += i * values[i];
+      xDoubleSigma += i * i;
+    }
+    return (values.length * xySigma - xSigma * ySigma) / (values.length * xDoubleSigma - xSigma * xSigma);
+  }
 
   $scope.init();
 }
