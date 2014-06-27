@@ -124,7 +124,10 @@ function SSSCtrl($location, $scope) {
     }
     return (values.length * xySigma - xSigma * ySigma) / (values.length * xDoubleSigma - xSigma * xSigma);
   }
-
+  $scope.playAgain = function() {
+    $scope.init();
+    $location.path("/game");
+  }
   $scope.init();
 }
 

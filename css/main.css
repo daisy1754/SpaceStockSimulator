@@ -157,7 +157,7 @@ img.star {
 }
 
 .result .result-message {
-  min-height: 200px;
+  min-height: 150px;
 }
 
 .result navigation-to-plus-you {
@@ -168,6 +168,11 @@ img.star {
   font-size: 0.75em;
 }
 
+.result .play-again {
+  margin-top: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 /* page transitions */
 /* crossFade */
 .fade {
