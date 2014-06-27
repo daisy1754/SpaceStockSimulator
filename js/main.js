@@ -185,9 +185,11 @@ function sellCtrl($route, $routeParams, $location, $scope) {
 }
 
 function gameClearCtrl($route, $routeParams, $location, $scope) {
-  $scope.resultMessage = "おめでとうございます！あなたは見事あろーず星を救うことができました";
+  $scope.resultTitle = "おめでとうございます！";
+  $scope.resultMessage = "あなたは見事あろーず星を救うことができました";
 }
 
 function gameoverCtrl($route, $routeParams, $location, $scope) {
-  $scope.resultMessage = "(´・ω・｀)";
+  $scope.resultTitle = "Game over";
+  $scope.resultMessage = "残念ながら時間切れです(´・ω・｀)";
 }
