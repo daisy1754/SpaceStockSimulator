@@ -55,6 +55,16 @@ img.star {
   background-color: black;
 }
 
+.social-buttons {
+  padding: 10px;
+  text-align: center;
+}
+
+.social-buttons .twitter-share-button[style] {
+  vertical-align: text-bottom !important;
+  margin-right: 30px;
+}
+
 /* top */
 .index .arrows {
   background-color: black;
