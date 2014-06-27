@@ -101,16 +101,16 @@ img.star {
   color: #eee;
 }
 
-.game-top .year {
-  background-color: #111;
+.game-top .year, .money {
   padding: 5px 10px;
   width: auto;
 }
 
 .game-top .information-bar {
   position: absolute;
-  top: 350px;
-  padding: 5px 10px;
+  top: 0px;
+  right: 0px;
+  padding: 0 10px;
   background-color: #222;
 }
 
@@ -124,6 +124,11 @@ img.star {
 .game-top .stocks li {
   float: left;
   padding-right: 10px;
+}
+
+.game-top .sell-button {
+  position: absolute;
+  right: 5px;
 }
 /* star */
 .star-detail .description {

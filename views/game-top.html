@@ -9,12 +9,12 @@
   <span class="year">銀河歴 {{year}}億年
     <span ng-if="year_limit - year < 10">(A星消滅まであと{{year_limit - year}})</span>
   </span>
+  <div class="money">所持金: {{money}}億銀河ドル</div>
   <div class="information-bar">
-    <span class="money">所持金: {{money}}億銀河ドル</span>
     <div>
       <ul class="stocks">
         <li class="stock" ng-repeat="(id, num_of_stock) in stocks">{{stars[id].name}}: {{num_of_stock}}株</li>
-      </ul><br>
+      </ul>
       持ち株価格合計: {{estimatedStockPrice()}}億銀河ドル
     </div>
   </div>
